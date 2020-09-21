@@ -25,7 +25,7 @@ module "key-vault" {
 
 data "azurerm_key_vault" "fact_key_vault" {
   name = module.key-vault.key_vault_name
-  resource_group_name = module.key-vault.key_vault_name
+  resource_group_name = azurerm_resource_group.rg.name
 }
 
 resource "azurerm_key_vault_secret" "AZURE_APPINSIGHTS_KEY" {
