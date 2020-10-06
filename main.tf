@@ -70,7 +70,7 @@ resource "azurerm_storage_blob" "images" {
   storage_account_name   = azurerm_storage_account.storage_account.name
   storage_container_name = azurerm_storage_container.images.name
   type                   = "Block"
-  source_uri             = "https://factaat.blob.core.windows.net/index.jpeg"
+  source_uri             = "https://factaat.blob.core.windows.net/images/index.jpeg"
 }
 
 resource "azurerm_key_vault_secret" "storage_account_name" {
