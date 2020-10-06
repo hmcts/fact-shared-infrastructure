@@ -4,7 +4,7 @@ provider azurerm {
 
 locals {
   images = [
-    "image_file"
+    "image_file",
     "birkenhead_county_court.jpg",
     "kettering_magistrates_court.jpg",
     "alton_magistrates_court.jpg",
