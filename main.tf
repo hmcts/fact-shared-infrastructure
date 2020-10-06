@@ -64,12 +64,12 @@ resource "azurerm_storage_container" "image_container" {
   storage_account_name = azurerm_storage_account.storage_account.name
 }
 
-resource "azurerm_storage_blob" "example" {
+resource "azurerm_storage_blob" "containers" {
   name                   = "images"
   storage_account_name   = azurerm_storage_account.storage_account.name
   storage_container_name = azurerm_storage_container.image_container.name
   type                   = "Block"
-  source_uri             = "https://factaat.blob.core.windows.net/"
+  source_uri             = "factaat.blob.core.windows.net"
 }
 
 resource "azurerm_key_vault_secret" "storage_account_name" {
