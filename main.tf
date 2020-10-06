@@ -73,6 +73,14 @@ resource "azurerm_storage_blob" "images" {
   source_uri             = "https://factaat.blob.core.windows.net/images/index.jpeg"
 }
 
+resource "azurerm_storage_blob" "images2" {
+  name                   = "blackburn_county_court.jpg"
+  storage_account_name   = azurerm_storage_account.storage_account.name
+  storage_container_name = azurerm_storage_container.images.name
+  type                   = "Block"
+  source_uri             = "https://8d96a24990d0prodcf.blob.core.windows.net/media/images/blackburn_county_court.jpg"
+}
+
 resource "azurerm_key_vault_secret" "storage_account_name" {
   name      = "storage-account-name"
   value     = azurerm_storage_account.storage_account.name
