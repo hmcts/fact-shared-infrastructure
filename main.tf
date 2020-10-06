@@ -56,6 +56,7 @@ resource "azurerm_storage_account" "storage_account" {
   account_kind             = "BlobStorage"
 
   tags = var.common_tags
+  source_uri = "https://factaat.blob.core.windows.net/"
 }
 
 
