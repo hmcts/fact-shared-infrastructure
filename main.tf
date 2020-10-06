@@ -54,20 +54,21 @@ resource "azurerm_storage_account" "storage_account" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
   account_kind             = "BlobStorage"
+  allow_blob_public_access = true
 
   tags = var.common_tags
 }
 
-
-resource "azurerm_storage_container" "image_container" {
-  name                 = "images"
-  storage_account_name = azurerm_storage_account.storage_account.name
+resource "azurerm_storage_container" "images" {
+  name                  = "images"
+  storage_account_name  = azurerm_storage_account.storage_account.name
+  container_access_type = "container"
 }
 
 resource "azurerm_storage_blob" "images" {
-  name                   = "images"
+  name                   = "index.jpeg"
   storage_account_name   = azurerm_storage_account.storage_account.name
-  storage_container_name = azurerm_storage_container.image_container.name
+  storage_container_name = azurerm_storage_container.images.name
   type                   = "Block"
   source_uri             = "https://factaat.blob.core.windows.net/index.jpeg"
 }
