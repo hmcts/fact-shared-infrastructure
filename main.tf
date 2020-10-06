@@ -591,21 +591,20 @@ resource "azurerm_storage_account" "storage_account" {
   tags = var.common_tags
 }
 
-resource "azurerm_storage_container" "images" {
-  name                  = "images"
-  storage_account_name  = azurerm_storage_account.storage_account.name
-  container_access_type = "container"
-}
-
-resource "azurerm_storage_blob" "images" {
-  name                   = local.images[count.index]
-  storage_account_name   = azurerm_storage_account.storage_account.name
-  storage_container_name = azurerm_storage_container.images.name
-  type                   = "Block"
-  source_uri             = "https://8d96a24990d0prodcf.blob.core.windows.net/media/images/${local.images[count.index]}"
-  count                  = length(local.images)
-  parallelism = 1
-}
+//resource "azurerm_storage_container" "images" {
+//  name                  = "images"
+//  storage_account_name  = azurerm_storage_account.storage_account.name
+//  container_access_type = "container"
+//}
+//
+//resource "azurerm_storage_blob" "images" {
+//  name                   = local.images[count.index]
+//  storage_account_name   = azurerm_storage_account.storage_account.name
+//  storage_container_name = azurerm_storage_container.images.name
+//  type                   = "Block"
+//  source_uri             = "https://8d96a24990d0prodcf.blob.core.windows.net/media/images/${local.images[count.index]}"
+//  count                  = length(local.images)
+//}
 
 resource "azurerm_key_vault_secret" "storage_account_name" {
   name      = "storage-account-name"
