@@ -61,8 +61,9 @@ resource "azurerm_storage_account" "storage_account" {
 
 
 resource "azurerm_storage_container" "images" {
-  name                 = "images"
-  storage_account_name = azurerm_storage_account.storage_account.name
+  name                  = "images"
+  storage_account_name  = azurerm_storage_account.storage_account.name
+  container_access_type = "container"
 }
 
 resource "azurerm_key_vault_secret" "storage_account_name" {
