@@ -516,7 +516,6 @@ locals {
     "swansea_magistrates_court.jpg",
     "birmingham_civil_justice_centre_and_family_courts.jpg",
     "tax-chamber-first-tier-tribunal.jpg",
-    "marks-test-court1.jpg",
     "birmingham-crown-court.jpg",
     "birmingham-immigration-and-asylum-chamber-first-tier-tribunal.jpg",
     "birmingham_magistrates_court.jpg",
