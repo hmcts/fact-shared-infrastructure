@@ -2,6 +2,10 @@ provider azurerm {
   features {}
 }
 
+locals {
+  images = ["blackburn_county_court.jpg"]
+}
+
 resource "azurerm_resource_group" "rg" {
   name     = "${var.product}-${var.env}"
   location = var.location
@@ -66,19 +70,12 @@ resource "azurerm_storage_container" "images" {
 }
 
 resource "azurerm_storage_blob" "images" {
-  name                   = "index.jpeg"
+  name                   = local.images[count.index]
   storage_account_name   = azurerm_storage_account.storage_account.name
   storage_container_name = azurerm_storage_container.images.name
   type                   = "Block"
-  source_uri             = "https://factaat.blob.core.windows.net/images/index.jpeg"
-}
-
-resource "azurerm_storage_blob" "images2" {
-  name                   = "blackburn_county_court.jpg"
-  storage_account_name   = azurerm_storage_account.storage_account.name
-  storage_container_name = azurerm_storage_container.images.name
-  type                   = "Block"
-  source_uri             = "https://8d96a24990d0prodcf.blob.core.windows.net/media/images/blackburn_county_court.jpg"
+  source_uri             = "https://8d96a24990d0prodcf.blob.core.windows.net/media/images/${local.images[count.index]}"
+  count                  = local.images
 }
 
 resource "azurerm_key_vault_secret" "storage_account_name" {
