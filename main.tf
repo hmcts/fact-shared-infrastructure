@@ -45,3 +45,48 @@ resource "azurerm_application_insights" "appinsights" {
     ]
   }
 }
+
+resource "azurerm_storage_account" "storage_account" {
+  name                = replace("${var.product}${var.env}", "-", "")
+  resource_group_name = azurerm_resource_group.rg.name
+
+  location                 = azurerm_resource_group.rg.location
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+  account_kind             = "BlobStorage"
+
+  tags = var.common_tags
+}
+
+
+resource "azurerm_storage_container" "service_containers" {
+  name                 = "images"
+  storage_account_name = azurerm_storage_account.storage_account.name
+}
+
+resource "azurerm_key_vault_secret" "storage_account_name" {
+  name      = "storage-account-name"
+  value     = azurerm_storage_account.storage_account.name
+  key_vault_id = module.key-vault.key_vault_id
+}
+
+resource "azurerm_key_vault_secret" "storage_account_primary_key" {
+  name      = "storage-account-primary-key"
+  value     = azurerm_storage_account.storage_account.primary_access_key
+  key_vault_id = module.key-vault.key_vault_id
+}
+
+resource "azurerm_key_vault_secret" "storage_account_connection_string" {
+  name      = "storage-account-connection-string"
+  value     = azurerm_storage_account.storage_account.primary_connection_string
+  key_vault_id = module.key-vault.key_vault_id
+}
+
+output "storage_account_name" {
+  value = azurerm_storage_account.storage_account.name
+}
+
+output "storage_account_primary_key" {
+  sensitive = true
+  value     = azurerm_storage_account.storage_account.primary_access_key
+}
