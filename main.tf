@@ -54,12 +54,13 @@ resource "azurerm_storage_account" "storage_account" {
   account_tier             = "Standard"
   account_replication_type = "LRS"
   account_kind             = "BlobStorage"
+  allow_blob_public_access = true
 
   tags = var.common_tags
 }
 
 
-resource "azurerm_storage_container" "service_containers" {
+resource "azurerm_storage_container" "images" {
   name                 = "images"
   storage_account_name = azurerm_storage_account.storage_account.name
 }
