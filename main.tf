@@ -551,7 +551,7 @@ module "key-vault" {
   # dcd_platformengineering group object ID
   product_group_object_id    = "c36eaede-a0ae-4967-8fed-0a02960b1370"
   common_tags                = var.common_tags
-  create_managed_identity    = true
+  create_managed_identity    = false
 }
 
 resource "azurerm_key_vault_secret" "AZURE_APPINSIGHTS_KEY" {
