@@ -4,7 +4,7 @@ provider azurerm {
 
 locals {
   images = [
-
+    "kettering_magistrates_court.jpg"
     ]
 }
 
