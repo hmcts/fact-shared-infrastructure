@@ -18,7 +18,7 @@ resource "azurerm_resource_group" "rg" {
 resource "azurerm_application_insights" "appinsights" {
   name                = "${var.product}-appinsights-${var.env}"
   location            = var.appinsights_location
-  resource_group_name = azurerm_resource_group.rg2.name
+  resource_group_name = azurerm_resource_group.rg.name
   application_type    = "web"
 
   tags = var.common_tags
