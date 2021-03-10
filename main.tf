@@ -82,7 +82,8 @@ resource "azurerm_storage_account" "storage_account" {
 
   tags = var.common_tags
 }
-/*
+
+  /*
 resource "azurerm_storage_container" "images" {
   name                  = "images"
   storage_account_name  = azurerm_storage_account.storage_account.name
