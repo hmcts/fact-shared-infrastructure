@@ -14,7 +14,7 @@ resource "azurerm_resource_group" "rg" {
 
   tags = var.common_tags
 }
-
+/*
 resource "azurerm_application_insights" "appinsights" {
   name                = "${var.product}-appinsights-${var.env}"
   location            = var.appinsights_location
@@ -32,7 +32,7 @@ resource "azurerm_application_insights" "appinsights" {
   }
 }
 
-/*
+
 module "key-vault" {
   source              = "git@github.com:hmcts/cnp-module-key-vault?ref=master"
   product             = var.product
