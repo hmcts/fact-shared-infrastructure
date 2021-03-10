@@ -15,6 +15,24 @@ resource "azurerm_resource_group" "rg" {
   tags = var.common_tags
 }
 
+resource "azurerm_application_insights" "appinsights2" {
+  name                = "${var.product}2-appinsights-${var.env}"
+  location            = var.appinsights_location
+  resource_group_name = azurerm_resource_group.rg.name
+  application_type    = "web"
+
+  tags = var.common_tags
+
+  lifecycle {
+    ignore_changes = [
+      # Ignore changes to appinsights as otherwise upgrading to the Azure provider 2.x
+      # destroys and re-creates this appinsights instance
+      application_type,
+    ]
+  }
+}
+
+/*
 module "key-vault" {
   source              = "git@github.com:hmcts/cnp-module-key-vault?ref=master"
   product             = var.product
@@ -106,3 +124,4 @@ output "storage_account_primary_key" {
   sensitive = true
   value     = azurerm_storage_account.storage_account.primary_access_key
 }
+*/
