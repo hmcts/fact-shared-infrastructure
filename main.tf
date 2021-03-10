@@ -7,9 +7,17 @@ locals {
 
     ]
 }
+/*
+resource "azurerm_resource_group" "rg2" {
+  name     = "${var.product}2-${var.env}"
+  location = var.location
 
-resource "azurerm_resource_group" "rg" {
-  name     = "${var.product}-${var.env}"
+  tags = var.common_tags
+}
+*/
+
+resource "azurerm_resource_group" "rg2" {
+  name     = "${var.product}2-${var.env}"
   location = var.location
 
   tags = var.common_tags
@@ -18,7 +26,7 @@ resource "azurerm_resource_group" "rg" {
 resource "azurerm_application_insights" "appinsights2" {
   name                = "${var.product}2-appinsights-${var.env}"
   location            = var.appinsights_location
-  resource_group_name = azurerm_resource_group.rg.name
+  resource_group_name = azurerm_resource_group.rg2.name
   application_type    = "web"
 
   tags = var.common_tags
