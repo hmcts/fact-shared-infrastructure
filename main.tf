@@ -53,23 +53,6 @@ resource "azurerm_key_vault_secret" "AZURE_APPINSIGHTS_KEY" {
   key_vault_id = module.key-vault.key_vault_id
 }
 
-resource "azurerm_application_insights" "appinsights" {
-  name                = "${var.product}-appinsights-${var.env}"
-  location            = var.appinsights_location
-  resource_group_name = azurerm_resource_group.rg.name
-  application_type    = "web"
-
-  tags = var.common_tags
-
-  lifecycle {
-    ignore_changes = [
-      # Ignore changes to appinsights as otherwise upgrading to the Azure provider 2.x
-      # destroys and re-creates this appinsights instance
-      application_type,
-    ]
-  }
-}
-
 resource "azurerm_storage_account" "storage_account" {
   name                = replace("${var.product}${var.env}", "-", "")
   resource_group_name = azurerm_resource_group.rg.name
