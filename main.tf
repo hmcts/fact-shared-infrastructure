@@ -32,7 +32,7 @@ resource "azurerm_application_insights" "appinsights" {
   }
 }
 
-/*
+
 module "key-vault" {
   source              = "git@github.com:hmcts/cnp-module-key-vault?ref=master"
   product             = var.product
@@ -69,7 +69,7 @@ resource "azurerm_application_insights" "appinsights" {
     ]
   }
 }
-*/
+
 resource "azurerm_storage_account" "storage_account" {
   name                = replace("${var.product}${var.env}", "-", "")
   resource_group_name = azurerm_resource_group.rg.name
@@ -97,7 +97,7 @@ resource "azurerm_storage_blob" "images" {
   source_uri             = "https://8d96a24990d0prodcf.blob.core.windows.net/media/images/${local.images[count.index]}"
   count                  = length(local.images)
 }
-/*
+
 resource "azurerm_key_vault_secret" "storage_account_name" {
   name      = "storage-account-name"
   value     = azurerm_storage_account.storage_account.name
@@ -115,7 +115,7 @@ resource "azurerm_key_vault_secret" "storage_account_connection_string" {
   value     = azurerm_storage_account.storage_account.primary_connection_string
   key_vault_id = module.key-vault.key_vault_id
 }
-*/
+
 output "storage_account_name" {
   value = azurerm_storage_account.storage_account.name
 }
