@@ -77,7 +77,7 @@ resource "azurerm_storage_container" "images" {
   storage_account_name  = azurerm_storage_account.storage_account.name
   container_access_type = "container"
 }
-/*
+
 resource "azurerm_storage_blob" "images" {
   name                   = local.images[count.index]
   storage_account_name   = azurerm_storage_account.storage_account.name
@@ -86,7 +86,7 @@ resource "azurerm_storage_blob" "images" {
   source_uri             = "https://8d96a24990d0prodcf.blob.core.windows.net/media/images/${local.images[count.index]}"
   count                  = length(local.images)
 }
-*/
+
 resource "azurerm_key_vault_secret" "storage_account_name" {
   name      = "storage-account-name"
   value     = azurerm_storage_account.storage_account.name
