@@ -77,7 +77,7 @@ resource "azurerm_storage_blob" "images" {
   storage_account_name   = azurerm_storage_account.storage_account.name
   storage_container_name = azurerm_storage_container.images.name
   type                   = "Block"
-  source_uri             = "https://8d96a24990d0prodcf.blob.core.windows.net/media/images/${local.images[count.index]}"
+  source_uri             = "https://zz8d96a24990d0prodcf.blob.core.windows.net/media/images/${local.images[count.index]}"
   count                  = length(local.images)
 }
 
