@@ -7,7 +7,6 @@ locals {
     "kettering_magistrates_court.jpg",
     "alton_magistrates_court.jpg",
     "andover_magistrates_court.jpg",
-    "aldridge_magistrates_court.jpg",
     "surrey_fixed_penalty_office.jpg",
     "royal_courts_of_justice.jpg",
     "bolton_county_court.jpg"
