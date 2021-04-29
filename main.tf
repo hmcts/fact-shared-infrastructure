@@ -528,8 +528,7 @@ locals {
     "poole_magistrates_court.png",
     "portsmouth_combined_court_centre.jpg",
     "preston_crown_court_sessions_house.jpg",
-    "queen_s_bench_division.jpg",
-    "reading_employment_tribunal.jpg"
+    "queen_s_bench_division.jpg"
     ]
 }
 
