@@ -58,6 +58,7 @@ resource "azurerm_storage_account" "storage_account" {
   location                 = azurerm_resource_group.rg.location
   account_tier             = "Standard"
   account_replication_type = "LRS"
+  account_kind             = "StorageV2"
   allow_blob_public_access = true
 
   tags = var.common_tags
