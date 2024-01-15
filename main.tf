@@ -59,7 +59,7 @@ resource "azurerm_storage_account" "storage_account" {
   account_tier             = "Standard"
   account_replication_type = "ZRS"
   account_kind             = "StorageV2"
-  allow_blob_public_access = true
+  allow_nested_items_to_be_public = true
 
   tags = var.common_tags
 }
