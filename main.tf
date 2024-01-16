@@ -30,7 +30,7 @@ module "key-vault" {
 
 resource "azurerm_key_vault_secret" "AZURE_APPINSIGHTS_KEY" {
   name         = "AppInsightsInstrumentationKey"
-  value        = module.application_insights.connection_string
+  value        = module.application_insights.instrumentation_key
   key_vault_id = module.key-vault.key_vault_id
 }
 
@@ -40,6 +40,7 @@ module "application_insights" {
   env     = var.env
   product = var.product
   name    = "${var.product}-appinsights"
+  location = var.appinsights_location
 
   resource_group_name = azurerm_resource_group.rg.name
 
