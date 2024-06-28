@@ -1,10 +1,10 @@
-provider azurerm {
+provider "azurerm" {
   features {}
 }
 
 locals {
   images = [
-    ]
+  ]
 }
 
 resource "azurerm_resource_group" "rg" {
@@ -23,9 +23,9 @@ module "key-vault" {
   resource_group_name = azurerm_resource_group.rg.name
 
   # dcd_platformengineering group object ID
-  product_group_name         = "DTS FaCT"
-  common_tags                = var.common_tags
-  create_managed_identity    = true
+  product_group_name      = "DTS FaCT"
+  common_tags             = var.common_tags
+  create_managed_identity = true
 }
 
 resource "azurerm_key_vault_secret" "AZURE_APPINSIGHTS_KEY" {
@@ -43,9 +43,9 @@ resource "azurerm_key_vault_secret" "app_insights_connection_string" {
 module "application_insights" {
   source = "git@github.com:hmcts/terraform-module-application-insights?ref=main"
 
-  env     = var.env
-  product = var.product
-  name    = "${var.product}-appinsights"
+  env      = var.env
+  product  = var.product
+  name     = "${var.product}-appinsights"
   location = var.appinsights_location
 
   resource_group_name = azurerm_resource_group.rg.name
@@ -62,10 +62,10 @@ resource "azurerm_storage_account" "storage_account" {
   name                = replace("${var.product}${var.env}", "-", "")
   resource_group_name = azurerm_resource_group.rg.name
 
-  location                 = azurerm_resource_group.rg.location
-  account_tier             = "Standard"
-  account_replication_type = "ZRS"
-  account_kind             = "StorageV2"
+  location                        = azurerm_resource_group.rg.location
+  account_tier                    = "Standard"
+  account_replication_type        = "ZRS"
+  account_kind                    = "StorageV2"
   allow_nested_items_to_be_public = true
 
   tags = var.common_tags
@@ -87,20 +87,20 @@ resource "azurerm_storage_blob" "images" {
 }
 
 resource "azurerm_key_vault_secret" "storage_account_name" {
-  name      = "storage-account-name"
-  value     = azurerm_storage_account.storage_account.name
+  name         = "storage-account-name"
+  value        = azurerm_storage_account.storage_account.name
   key_vault_id = module.key-vault.key_vault_id
 }
 
 resource "azurerm_key_vault_secret" "storage_account_primary_key" {
-  name      = "storage-account-primary-key"
-  value     = azurerm_storage_account.storage_account.primary_access_key
+  name         = "storage-account-primary-key"
+  value        = azurerm_storage_account.storage_account.primary_access_key
   key_vault_id = module.key-vault.key_vault_id
 }
 
 resource "azurerm_key_vault_secret" "storage_account_connection_string" {
-  name      = "storage-account-connection-string"
-  value     = azurerm_storage_account.storage_account.primary_connection_string
+  name         = "storage-account-connection-string"
+  value        = azurerm_storage_account.storage_account.primary_connection_string
   key_vault_id = module.key-vault.key_vault_id
 }
 
