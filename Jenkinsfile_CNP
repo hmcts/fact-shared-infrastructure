@@ -6,5 +6,4 @@
 def product = 'fact'
 
 withInfraPipeline(product) {
-  enableSlackNotifications('fact-tech')
 }
