@@ -69,11 +69,6 @@ resource "azurerm_storage_account" "storage_account" {
   allow_nested_items_to_be_public = true
 
   tags = var.common_tags
-
-  managed_identity_object_id = data.azurerm_user_assigned_identity.app_mi.principal_id
-  role_assignments = [
-    "Storage Blob Data Contributor"
-  ]
 }
 
 resource "azurerm_storage_container" "images" {
