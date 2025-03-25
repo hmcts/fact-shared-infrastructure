@@ -77,6 +77,19 @@ resource "azurerm_storage_container" "images" {
   container_access_type = "container"
 }
 
+data "azurerm_user_assigned_identity" "fact-cft-mi" {
+  name                = "fact-${var.env}-mi"
+  resource_group_name = "managed-identities-${var.env}-rg"
+}
+
+resource "azurerm_role_assignment" "mi_sa" {
+  for_each             = toset(["Contributor", "Storage Blob Data Contributor"])
+  scope                = storage_account.id
+  role_definition_name = each.key
+  principal_id         = data.azurerm_user_assigned_identity.fact-cft-mi.principal_id
+  depends_on           = [data.azurerm_user_assigned_identity.fact-cft-mi]
+}
+
 resource "azurerm_storage_blob" "images" {
   name                   = local.images[count.index]
   storage_account_name   = azurerm_storage_account.storage_account.name
