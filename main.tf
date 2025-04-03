@@ -77,6 +77,12 @@ resource "azurerm_storage_container" "images" {
   container_access_type = "container"
 }
 
+resource "azurerm_storage_container" "csv" {
+  name                  = "csv"
+  storage_account_name  = azurerm_storage_account.storage_account.name
+  container_access_type = "container"
+}
+
 resource "azurerm_storage_blob" "images" {
   name                   = local.images[count.index]
   storage_account_name   = azurerm_storage_account.storage_account.name
