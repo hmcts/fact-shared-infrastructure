@@ -14,12 +14,14 @@ resource "azurerm_key_vault_secret" "AZURE_APPINSIGHTS_KEY_AI" {
   name         = "AppInsightsInstrumentationKey-ai"
   value        = module.application_insights_new.instrumentation_key
   key_vault_id = module.key-vault.key_vault_id
+  sensitive    = true
 }
 
 resource "azurerm_key_vault_secret" "app_insights_connection_string_ai" {
   name         = "app-insights-connection-string-ai"
   value        = module.application_insights_new.connection_string
   key_vault_id = module.key-vault.key_vault_id
+  sensitive    = true
 }
 
 output "app_insights_ai_instrumentation_key" {
