@@ -25,3 +25,8 @@ variable "appinsights_location" {
   default     = "West Europe"
   description = "Location for Application Insights"
 }
+
+variable "appinsights_ai_location" {
+  default     = "UK South"
+  description = "Location for replacement Application Insights"
+}
