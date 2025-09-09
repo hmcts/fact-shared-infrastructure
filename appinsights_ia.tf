@@ -22,12 +22,3 @@ resource "azurerm_key_vault_secret" "app_insights_connection_string_ai" {
   key_vault_id = module.key-vault.key_vault_id
 }
 
-output "app_insights_ai_instrumentation_key" {
-  value     = module.application_insights_new.instrumentation_key
-  sensitive = true
-}
-
-output "app_insights_ai_connection_string" {
-  value     = module.application_insights_new.connection_string
-  sensitive = true
-}
