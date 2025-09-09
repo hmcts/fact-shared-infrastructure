@@ -109,3 +109,12 @@ resource "azurerm_key_vault_secret" "storage_account_connection_string" {
   value        = azurerm_storage_account.storage_account.primary_connection_string
   key_vault_id = module.key-vault.key_vault_id
 }
+
+output "storage_account_name" {
+  value = azurerm_storage_account.storage_account.name
+}
+
+output "storage_account_primary_key" {
+  sensitive = true
+  value     = azurerm_storage_account.storage_account.primary_access_key
+}
