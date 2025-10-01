@@ -11,7 +11,7 @@ module "app_insights" {
   common_tags         = var.common_tags
 }
 
-resource "azurerm_key_vault_secret" "app_insights_connection_string_ai" {
+resource "azurerm_key_vault_secret" "app_insights_ai_connection_string" {
   name         = "app-insights-connection-string"
   value        = module.app_insights.connection_string
   key_vault_id = module.key_vault.key_vault_id
