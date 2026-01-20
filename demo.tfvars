@@ -1,1 +1,0 @@
-appinsights_location = "UK South"
