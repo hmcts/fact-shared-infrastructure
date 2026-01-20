@@ -5,7 +5,7 @@ module "app_insights" {
   env                 = var.env
   product             = var.product
   name                = "${var.product}-ai"
-  location            = var.appinsights_ai_location
+  location            = var.location
   alert_limit_reached = true
 
   resource_group_name = azurerm_resource_group.rg.name

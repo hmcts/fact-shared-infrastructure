@@ -4,7 +4,7 @@ module "application_insights_new" {
   env      = var.env
   product  = var.product
   name     = "${var.product}-appinsights-ai"
-  location = var.appinsights_ai_location
+  location = var.location
 
   resource_group_name = azurerm_resource_group.rg.name
   common_tags         = var.common_tags
