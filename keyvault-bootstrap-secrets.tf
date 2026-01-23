@@ -9,12 +9,12 @@ locals {
 
   # functional tests run on the AAT environment and require additional secrets
   aat_bootstrap_secrets = [
-    "func-test-client-secret",
+    "func-test-client-secret"
   ]
 
   bootstrap_secrets = var.env == "aat" ? concat(local.base_bootstrap_secrets, local.aat_bootstrap_secrets) : local.base_bootstrap_secrets
   bootstrap_prefix  = "${var.product}-bstrap-${var.env}"
-  bootstrap_name_prefix = "bstrap";
+  bootstrap_name_prefix = "bstrap"
 }
 
 data "azurerm_key_vault" "bootstrap_kv" {
