@@ -1,7 +1,6 @@
 locals {
   # Common secrets for all envs
   base_bootstrap_secrets = [
-    "app-reg-id",
     "cath-api-url",
     "os-key",
     "slack-channel-id",
@@ -10,9 +9,7 @@ locals {
 
   # functional tests run on the AAT environment and require additional secrets
   aat_bootstrap_secrets = [
-    "testing-client-app-id",
-    "testing-client-secret",
-    "testing-tenant-id"
+    "func-test-client-secret",
   ]
 
   bootstrap_secrets = var.env == "aat" ? concat(local.base_bootstrap_secrets, local.aat_bootstrap_secrets) : local.base_bootstrap_secrets
