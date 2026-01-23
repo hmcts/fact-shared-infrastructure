@@ -30,7 +30,7 @@ data "azurerm_key_vault_secret" "bootstrap_secrets" {
 
 resource "azurerm_key_vault_secret" "bootstrap_secrets" {
   for_each        = data.azurerm_key_vault_secret.bootstrap_secrets
-  key_vault_id    = module.this.key_vault_id
+  key_vault_id    = module.key_vault.key_vault_id
   name            = "${local.bootstrap_name_prefix}-${each.value.name}"
   value           = each.value.value
   tags            = merge(var.common_tags, {
