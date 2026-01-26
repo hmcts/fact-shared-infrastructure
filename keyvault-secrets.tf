@@ -5,11 +5,11 @@ locals {
   test_client_app_reg_name = "fact-admin-frontend-${local.app_reg_suffix}"
 }
 
-data "azuread_application_registration" "api_app_reg" {
+data "azurerm_application_registration" "api_app_reg" {
   display_name = local.api_app_reg_name
 }
 
-data "azuread_application_registration" "test_client_app_reg" {
+data "azurerm_application_registration" "test_client_app_reg" {
   display_name = local.test_client_app_reg_name
 }
 
