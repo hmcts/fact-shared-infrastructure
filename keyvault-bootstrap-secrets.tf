@@ -1,3 +1,4 @@
+# These are the bootstrap secrets used by the new FaCT
 locals {
   # Common secrets for all envs
   base_bootstrap_secrets = [
