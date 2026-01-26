@@ -5,6 +5,15 @@ locals {
   test_client_app_reg_name = "fact-admin-frontend-${local.app_reg_suffix}"
 }
 
+resource "random_password" "session_string" {
+  length      = 20
+  min_upper   = 2
+  min_lower   = 2
+  min_numeric = 2
+  min_special = 2
+  special     = true
+}
+
 data "azuread_application" "api_app_reg" {
   display_name = local.api_app_reg_name
 }
@@ -40,6 +49,15 @@ resource "azurerm_key_vault_secret" "test_client_tenant_id" {
   count           = var.env == "aat" ? 1 : 0
   name            = "func-test-tenant-id"
   value           = var.tenant_id
+  key_vault_id    = module.key_vault.key_vault_id
+  tags            = var.common_tags
+  content_type    = "Calculated Secret"
+  expiration_date = timeadd(timestamp(), "17520h")
+}
+
+resource "azurerm_key_vault_secret" "session_secret" {
+  name            = "session-secret"
+  value           = random_password.session_string.result
   key_vault_id    = module.key_vault.key_vault_id
   tags            = var.common_tags
   content_type    = "Calculated Secret"
