@@ -18,7 +18,7 @@ resource "azurerm_key_vault_secret" "api_app_reg_id" {
   value        = data.azuread_application.api_app_reg.client_id
   key_vault_id = module.key_vault.key_vault_id
   tags = merge(var.common_tags, {
-    "source" : "calculated from ${local.api_app_reg_name}"
+    "source" : "calculated from ${local.api_app_reg_name} app reg"
   })
   content_type    = "Calculated Secret"
   expiration_date = timeadd(timestamp(), "17520h")
@@ -30,7 +30,7 @@ resource "azurerm_key_vault_secret" "test_client_app_reg_id" {
   value        = data.azuread_application.test_client_app_reg.client_id
   key_vault_id = module.key_vault.key_vault_id
   tags = merge(var.common_tags, {
-    "source" : "calculated from ${local.test_client_app_reg_name}"
+    "source" : "calculated from ${local.test_client_app_reg_name} app reg"
   })
   content_type    = "Calculated Secret"
   expiration_date = timeadd(timestamp(), "17520h")
@@ -38,7 +38,7 @@ resource "azurerm_key_vault_secret" "test_client_app_reg_id" {
 
 resource "azurerm_key_vault_secret" "test_client_tenant_id" {
   count           = var.env == "aat" ? 1 : 0
-  name            = "func-test-client-tenant-id"
+  name            = "func-test-tenant-id"
   value           = var.tenant_id
   key_vault_id    = module.key_vault.key_vault_id
   tags            = var.common_tags
