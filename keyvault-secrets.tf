@@ -6,11 +6,11 @@ locals {
 }
 
 data "azuread_application_registration" "api_app_reg" {
-  display_name     = local.api_app_reg_name
+  display_name = local.api_app_reg_name
 }
 
 data "azuread_application_registration" "test_client_app_reg" {
-  display_name     = local.test_client_app_reg_name
+  display_name = local.test_client_app_reg_name
 }
 
 resource "azurerm_key_vault_secret" "api_app_reg_id" {
