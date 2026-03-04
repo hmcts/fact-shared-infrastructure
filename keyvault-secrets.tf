@@ -39,11 +39,11 @@ resource "azurerm_key_vault_secret" "api_app_reg_id" {
 }
 
 resource "azurerm_key_vault_secret" "public_frontend_app_reg_id" {
-  name         = " public-frontend-app-reg-id"
+  name         = "public-frontend-app-reg-id"
   value        = data.azuread_application.public_frontend_app_reg.client_id
   key_vault_id = module.key_vault.key_vault_id
   tags = merge(var.common_tags, {
-    "source" : "calculated from ${local.api_app_reg_name} app reg"
+    "source" : "calculated from ${local.public_frontend_app_reg_name} app reg"
   })
   content_type    = "Calculated Secret"
   expiration_date = timeadd(timestamp(), "17520h")
@@ -67,7 +67,7 @@ resource "azurerm_key_vault_secret" "test_client_viewer_app_reg_id" {
   value        = data.azuread_application.public_frontend_app_reg.client_id
   key_vault_id = module.key_vault.key_vault_id
   tags = merge(var.common_tags, {
-    "source" : "calculated from ${local.test_viewer_app_reg_name} app reg"
+    "source" : "calculated from ${local.public_frontend_app_reg_name} app reg"
   })
   content_type    = "Calculated Secret"
   expiration_date = timeadd(timestamp(), "17520h")
