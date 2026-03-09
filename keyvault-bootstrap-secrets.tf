@@ -2,8 +2,10 @@
 locals {
   # Common secrets for all envs
   base_bootstrap_secrets = [
+    "admin-fronted-client-secret",
     "cath-api-url",
     "os-key",
+    "public-fronted-client-secret",
     "slack-channel-id",
     "slack-token"
   ]
