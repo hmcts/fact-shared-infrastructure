@@ -8,6 +8,10 @@ data "azurerm_user_assigned_identity" "fact_mi" {
   resource_group_name = data.azurerm_resource_group.mi_resource_group.name
 }
 
+data "azurerm_user_assigned_identity" "jenkins_mi" {
+  name                = "jenkins-${var.env}-mi"
+  resource_group_name = data.azurerm_resource_group.mi_resource_group.name
+}
 
 module "key_vault" {
   source              = "git@github.com:hmcts/cnp-module-key-vault?ref=master"
@@ -20,4 +24,5 @@ module "key_vault" {
 
   common_tags                 = var.common_tags
   managed_identity_object_ids = [data.azurerm_user_assigned_identity.fact_mi.principal_id]
+  jenkins_object_id           = data.azurerm_user_assigned_identity.jenkins_mi.principal_id
 }
