@@ -7,6 +7,10 @@ locals {
   ]
 }
 
+data "azurerm_resource_group" "mi_resource_group" {
+  name = "managed-identities-${var.env}-rg"
+}
+
 data "azurerm_user_assigned_identity" "jenkins_mi" {
   name                = "jenkins-${var.env}-mi"
   resource_group_name = data.azurerm_resource_group.mi_resource_group.name
