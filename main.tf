@@ -26,6 +26,7 @@ module "key-vault" {
   product_group_name      = "DTS FaCT"
   common_tags             = var.common_tags
   create_managed_identity = true
+  jenkins_object_id       = data.azurerm_user_assigned_identity.jenkins_mi.principal_id
 }
 
 resource "azurerm_storage_account" "storage_account" {
