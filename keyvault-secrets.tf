@@ -2,7 +2,7 @@
 locals {
   app_reg_suffix               = var.env == "prod" ? "prod" : "non-prod"
   api_app_reg_name             = "fact-data-api-${local.app_reg_suffix}"
-  admin_frontend_app_reg_name     = "fact-admin-frontend-${local.app_reg_suffix}"
+  admin_frontend_app_reg_name  = "fact-admin-frontend-${local.app_reg_suffix}"
   public_frontend_app_reg_name = "fact-frontend-${local.app_reg_suffix}"
 }
 
