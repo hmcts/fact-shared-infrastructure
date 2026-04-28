@@ -2,7 +2,7 @@
 locals {
   app_reg_suffix               = var.env == "prod" ? "prod" : "non-prod"
   api_app_reg_name             = "fact-data-api-${local.app_reg_suffix}"
-  test_client_app_reg_name     = "fact-admin-frontend-${local.app_reg_suffix}"
+  admin_frontend_app_reg_name     = "fact-admin-frontend-${local.app_reg_suffix}"
   public_frontend_app_reg_name = "fact-frontend-${local.app_reg_suffix}"
 }
 
@@ -19,8 +19,8 @@ data "azuread_application" "api_app_reg" {
   display_name = local.api_app_reg_name
 }
 
-data "azuread_application" "test_client_app_reg" {
-  display_name = local.test_client_app_reg_name
+data "azuread_application" "admin_app_reg" {
+  display_name = local.admin_frontend_app_reg_name
 }
 
 data "azuread_application" "public_frontend_app_reg" {
@@ -49,13 +49,24 @@ resource "azurerm_key_vault_secret" "public_frontend_app_reg_id" {
   expiration_date = timeadd(timestamp(), "17520h")
 }
 
+resource "azurerm_key_vault_secret" "admin_frontend_app_reg_id" {
+  name         = "admin-frontend-app-reg-id"
+  value        = data.azuread_application.admin_app_reg.client_id
+  key_vault_id = module.key_vault.key_vault_id
+  tags = merge(var.common_tags, {
+    "source" : "calculated from ${local.admin_frontend_app_reg_name} app reg"
+  })
+  content_type    = "Calculated Secret"
+  expiration_date = timeadd(timestamp(), "17520h")
+}
+
 resource "azurerm_key_vault_secret" "test_client_app_reg_id" {
   count        = var.env == "aat" ? 1 : 0
   name         = "func-test-client-app-id"
-  value        = data.azuread_application.test_client_app_reg.client_id
+  value        = data.azuread_application.admin_app_reg.client_id
   key_vault_id = module.key_vault.key_vault_id
   tags = merge(var.common_tags, {
-    "source" : "calculated from ${local.test_client_app_reg_name} app reg"
+    "source" : "calculated from ${local.admin_frontend_app_reg_name} app reg"
   })
   content_type    = "Calculated Secret"
   expiration_date = timeadd(timestamp(), "17520h")
