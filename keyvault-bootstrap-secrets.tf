@@ -7,7 +7,8 @@ locals {
     "os-key",
     "public-frontend-client-secret",
     "slack-channel-id",
-    "slack-token"
+    "slack-token",
+    "cron-trigger-client-secret"
   ]
 
   # functional tests run on the AAT environment and require additional secrets
