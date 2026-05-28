@@ -8,13 +8,19 @@ locals {
     "public-frontend-client-secret",
     "slack-channel-id",
     "slack-token",
-    "cron-trigger-client-secret"
+    "cron-trigger-client-secret",
+    "sso-client-id",
+    "sso-client-secret",
+    "sso-tenant-id"
   ]
 
   # functional tests run on the AAT environment and require additional secrets
   aat_bootstrap_secrets = [
     "func-test-client-secret",
-    "func-viewer-test-client-secret"
+    "func-viewer-test-client-secret",
+    "jenkins-sso-client-id",
+    "jenkins-sso-client-secret",
+    "devl-sso-tenant-id"
   ]
 
   bootstrap_secrets     = var.env == "aat" ? concat(local.base_bootstrap_secrets, local.aat_bootstrap_secrets) : local.base_bootstrap_secrets
