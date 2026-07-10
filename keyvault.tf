@@ -14,7 +14,7 @@ data "azurerm_user_assigned_identity" "jenkins_mi" {
 }
 
 module "key_vault" {
-  source              = "git@github.com:hmcts/cnp-module-key-vault?ref=master"
+  source              = "git@github.com:hmcts/cnp-module-key-vault?ref=DTSPO-31965/remove-jenkins-ptl-access"
   name                = "${var.product}-kv-${var.env}"
   product             = var.product
   env                 = var.env
@@ -25,4 +25,6 @@ module "key_vault" {
   common_tags                 = var.common_tags
   managed_identity_object_ids = [data.azurerm_user_assigned_identity.fact_mi.principal_id]
   jenkins_object_id           = data.azurerm_user_assigned_identity.jenkins_mi.principal_id
+
+  grant_preview_jenkins_access = var.env == "aat" // cft apps only
 }
