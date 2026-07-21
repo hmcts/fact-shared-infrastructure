@@ -28,6 +28,10 @@ data "azuread_application" "public_frontend_app_reg" {
   display_name = local.public_frontend_app_reg_name
 }
 
+data "azuread_application" "fact_cron_trigger_app_reg" {
+  display_name = local.fact_cron_trigger_app_reg_name
+}
+
 resource "azurerm_key_vault_secret" "api_app_reg_id" {
   name         = "api-app-reg-id"
   value        = data.azuread_application.api_app_reg.client_id
