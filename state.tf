@@ -10,5 +10,17 @@ terraform {
       source  = "hashicorp/azurerm"
       version = "4.81.0"
     }
+    http = {
+      source  = "hashicorp/http"
+      version = "3.6.1"
+    }
+    null = {
+      source  = "hashicorp/null"
+      version = "3.3.1"
+    }
+    random = {
+      source  = "hashicorp/random"
+      version = "3.9.0"
+    }
   }
 }
