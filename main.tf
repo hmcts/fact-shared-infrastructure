@@ -23,10 +23,10 @@ module "key-vault" {
   resource_group_name = azurerm_resource_group.rg.name
 
   # dcd_platformengineering group object ID
-  product_group_name      = "DTS FaCT"
-  common_tags             = var.common_tags
-  create_managed_identity = true
-  jenkins_object_id       = data.azurerm_user_assigned_identity.jenkins_mi.principal_id
+  product_group_name           = "DTS FaCT"
+  common_tags                  = var.common_tags
+  create_managed_identity      = true
+  jenkins_object_id            = data.azurerm_user_assigned_identity.jenkins_mi.principal_id
   grant_preview_jenkins_access = var.env == "aat"
 }
 
