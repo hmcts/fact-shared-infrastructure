@@ -11,7 +11,10 @@ locals {
     "cron-trigger-client-secret",
     "sso-client-id",
     "sso-client-secret",
-    "sso-tenant-id"
+    "sso-tenant-id",
+    "fact-data-api-admin-user-email",
+    "fact-data-api-admin-user-role",
+    "fact-data-api-admin-user-sso-id"
   ]
 
   # functional tests run on the AAT environment and require additional secrets
