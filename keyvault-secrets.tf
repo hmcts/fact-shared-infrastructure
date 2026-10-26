@@ -1,9 +1,9 @@
 # These are the calculated secrets used by the new FaCT
 locals {
-  app_reg_suffix               = var.env == "prod" ? "prod" : "non-prod"
-  api_app_reg_name             = "fact-data-api-${local.app_reg_suffix}"
-  admin_frontend_app_reg_name  = "fact-admin-frontend-${local.app_reg_suffix}"
-  public_frontend_app_reg_name = "fact-frontend-${local.app_reg_suffix}"
+  app_reg_suffix                 = var.env == "prod" ? "prod" : "non-prod"
+  api_app_reg_name               = "fact-data-api-${local.app_reg_suffix}"
+  admin_frontend_app_reg_name    = "fact-admin-frontend-${local.app_reg_suffix}"
+  public_frontend_app_reg_name   = "fact-frontend-${local.app_reg_suffix}"
   fact_cron_trigger_app_reg_name = "fact-cron-trigger-${local.app_reg_suffix}"
 }
 
