@@ -4,6 +4,8 @@ locals {
   base_bootstrap_secrets = [
     "admin-frontend-client-secret",
     "cath-api-url",
+    "onspd-allowed-serv-host",
+    "onspd-cat-url",
     "os-key",
     "public-frontend-client-secret",
     "slack-channel-id",

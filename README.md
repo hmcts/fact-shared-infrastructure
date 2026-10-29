@@ -64,6 +64,8 @@ The new FaCT resources are primarily in `keyvault.tf`, `keyvault-bootstrap-secre
 - Always copied:
   - `admin-frontend-client-secret`
   - `cath-api-url`
+  - `onspd-allowed-serv-host`
+  - `onspd-cat-url`
   - `os-key`
   - `public-frontend-client-secret`
   - `slack-channel-id`
